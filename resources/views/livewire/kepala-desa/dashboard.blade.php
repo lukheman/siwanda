@@ -56,7 +56,7 @@
             <x-layout.modern-card class="h-100">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="fw-semibold mb-0"><i class="fas fa-tasks text-primary me-2"></i>Status Program & Kegiatan</h5>
-                    <a href="{{ route('kepala_desa.sisa-anggaran') }}" class="btn btn-sm btn-outline-primary">Lihat Detail Realisasi</a>
+                    <x-ui.button href="{{ route('kepala_desa.sisa-anggaran') }}">Lihat Detail Realisasi</x-ui.button>
                 </div>
 
                 <div class="row g-3 mb-4">
@@ -120,14 +120,14 @@
 
         {{-- Section Kanan: Aset Desa --}}
         <div class="col-md-4">
-            <x-layout.modern-card class="h-100 bg-primary bg-opacity-10 border-0" style="background-image: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);">
+            <x-layout.modern-card>
                 <div class="text-center py-4">
                     <div class="bg-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4 shadow-sm" style="width: 80px; height: 80px;">
                         <i class="fas fa-boxes fs-1 text-primary"></i>
                     </div>
                     <h4 class="fw-bold text-body mb-2">Aset Inventaris Desa</h4>
                     <p class="text-muted mb-4">Ringkasan kekayaan fisik desa</p>
-                    
+
                     <div class="bg-white p-3 rounded-3 shadow-sm mb-3 text-start">
                         <small class="text-muted text-uppercase fw-semibold d-block mb-1">Total Unit Barang</small>
                         <h3 class="fw-bold text-body mb-0">{{ $totalAset }} <span class="fs-6 fw-normal">Item</span></h3>

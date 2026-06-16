@@ -1,6 +1,6 @@
 @props([
     'title' => 'Modern Admin Dashboard',
-    'brandName' => 'AdminPro',
+    'brandName' => 'SIWANDA',
     'brandIcon' => 'fas fa-layer-group'
 ])
 
@@ -540,40 +540,48 @@
                      (Auth::guard('kepala_desa')->check() ? 'kepala_desa' : 'admin'));
             $routePrefix = $guard . '.';
         @endphp
+
         <x-layout.sidebar-section title="Main">
             <x-layout.sidebar-link href="{{ route($routePrefix . 'dashboard') }}" icon="fas fa-home" :active="request()->routeIs($routePrefix . 'dashboard')">Dashboard</x-layout.sidebar-link>
         </x-layout.sidebar-section>
 
-        @if(Route::has($routePrefix . 'pemasukan') || Route::has($routePrefix . 'sisa-anggaran') || Route::has($routePrefix . 'laporan-realisasi'))
-        <x-layout.sidebar-section title="Keuangan">
-            @if(Route::has($routePrefix . 'pemasukan'))
-            <x-layout.sidebar-link href="{{ route($routePrefix . 'pemasukan') }}" icon="fas fa-wallet" :active="request()->routeIs($routePrefix . 'pemasukan')">Pemasukan</x-layout.sidebar-link>
-            <x-layout.sidebar-link href="{{ route($routePrefix . 'pengeluaran') }}" icon="fas fa-hand-holding-usd" :active="request()->routeIs($routePrefix . 'pengeluaran')">Pengeluaran</x-layout.sidebar-link>
-            @endif
-            @if(Route::has($routePrefix . 'sisa-anggaran'))
-            <x-layout.sidebar-link href="{{ route($routePrefix . 'sisa-anggaran') }}" icon="fas fa-chart-pie" :active="request()->routeIs($routePrefix . 'sisa-anggaran')">Sisa Anggaran</x-layout.sidebar-link>
-            @endif
-            @if(Route::has($routePrefix . 'laporan-realisasi'))
-            <x-layout.sidebar-link href="{{ route($routePrefix . 'laporan-realisasi') }}" icon="fas fa-file-pdf" :active="request()->routeIs($routePrefix . 'laporan-realisasi')">Laporan Realisasi</x-layout.sidebar-link>
-            @endif
+        @if(Auth::guard('admin')->check())
+        <x-layout.sidebar-section title="Master Data">
+            <x-layout.sidebar-link href="{{ route('admin.kategori') }}" icon="fas fa-tags" :active="request()->routeIs('admin.kategori')">Kategori Transaksi</x-layout.sidebar-link>
+            <x-layout.sidebar-link href="{{ route('admin.users') }}" icon="fas fa-users" :active="request()->routeIs('admin.users')">Pengguna</x-layout.sidebar-link>
         </x-layout.sidebar-section>
         @endif
 
-        @if(Route::has($routePrefix . 'kegiatan'))
+        @if(Route::has($routePrefix . 'pemasukan'))
+        <x-layout.sidebar-section title="Keuangan">
+            <x-layout.sidebar-link href="{{ route($routePrefix . 'pemasukan') }}" icon="fas fa-wallet" :active="request()->routeIs($routePrefix . 'pemasukan')">Pemasukan</x-layout.sidebar-link>
+            <x-layout.sidebar-link href="{{ route($routePrefix . 'pengeluaran') }}" icon="fas fa-hand-holding-usd" :active="request()->routeIs($routePrefix . 'pengeluaran')">Pengeluaran</x-layout.sidebar-link>
+        </x-layout.sidebar-section>
+        @endif
 
+
+        @if(Route::has($routePrefix . 'kegiatan') || Route::has($routePrefix . 'inventaris'))
         <x-layout.sidebar-section title="Operasional & Aset">
+            @if(Route::has($routePrefix . 'kegiatan'))
             <x-layout.sidebar-link href="{{ route($routePrefix . 'kegiatan') }}" icon="fas fa-tasks" :active="request()->routeIs($routePrefix . 'kegiatan')">Kegiatan</x-layout.sidebar-link>
+            @endif
+            @if(Route::has($routePrefix . 'inventaris'))
             <x-layout.sidebar-link href="{{ route($routePrefix . 'inventaris') }}" icon="fas fa-boxes" :active="request()->routeIs($routePrefix . 'inventaris')">Inventaris</x-layout.sidebar-link>
+            @endif
             @if(Auth::guard('admin')->check())
             <x-layout.sidebar-link href="{{ route('admin.mutasi-aset') }}" icon="fas fa-exchange-alt" :active="request()->routeIs('admin.mutasi-aset')">Mutasi Aset</x-layout.sidebar-link>
             @endif
         </x-layout.sidebar-section>
         @endif
 
-        @if(Auth::guard('admin')->check())
-        <x-layout.sidebar-section title="Master Data">
-            <x-layout.sidebar-link href="{{ route('admin.kategori') }}" icon="fas fa-tags" :active="request()->routeIs('admin.kategori')">Kategori Transaksi</x-layout.sidebar-link>
-            <x-layout.sidebar-link href="{{ route('admin.users') }}" icon="fas fa-users" :active="request()->routeIs('admin.users')">Pengguna</x-layout.sidebar-link>
+        @if(Route::has($routePrefix . 'sisa-anggaran') || Route::has($routePrefix . 'laporan-realisasi'))
+        <x-layout.sidebar-section title="Laporan">
+            @if(Route::has($routePrefix . 'sisa-anggaran'))
+            <x-layout.sidebar-link href="{{ route($routePrefix . 'sisa-anggaran') }}" icon="fas fa-chart-pie" :active="request()->routeIs($routePrefix . 'sisa-anggaran')">Laporan Sisa Anggaran</x-layout.sidebar-link>
+            @endif
+            @if(Route::has($routePrefix . 'laporan-realisasi'))
+            <x-layout.sidebar-link href="{{ route($routePrefix . 'laporan-realisasi') }}" icon="fas fa-file-pdf" :active="request()->routeIs($routePrefix . 'laporan-realisasi')">Laporan Realisasi</x-layout.sidebar-link>
+            @endif
         </x-layout.sidebar-section>
         @endif
 

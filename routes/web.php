@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\LogoutController;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Profile;
 use App\Livewire\Admin\UserManagement;
-use App\Livewire\Admin\ComponentDocs;
+
 
 // Admin Keuangan & Manajemen
 use App\Livewire\Admin\KategoriTransaksiManagement;
@@ -61,7 +61,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     // Pengaturan & Sistem
     Route::get('/users', UserManagement::class)->name('admin.users');
-    Route::get('/components', ComponentDocs::class)->name('admin.components');
+
 });
 
 // Bendahara-only Routes

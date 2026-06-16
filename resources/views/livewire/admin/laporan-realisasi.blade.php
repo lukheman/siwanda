@@ -1,8 +1,8 @@
 <div>
     <x-layout.page-header title="Laporan Realisasi Dana Desa" subtitle="Cetak Laporan Realisasi Penggunaan Anggaran Kegiatan">
         <x-slot:actions>
-            <x-ui.button wire:click="downloadPdf" variant="primary" icon="fas fa-file-pdf">
-                Unduh PDF Laporan
+            <x-ui.button wire:click="downloadPdf" variant="danger" icon="fas fa-file-pdf">
+            Unduh Laporan
             </x-ui.button>
         </x-slot:actions>
     </x-layout.page-header>
@@ -15,11 +15,11 @@
             <div class="col-md-6 text-md-end mt-3 mt-md-0">
                 <div class="d-inline-flex align-items-center">
                     <label class="fw-semibold me-3 mb-0">Tahun Anggaran:</label>
-                    <select wire:model.live="tahun" class="form-select w-auto d-inline-block">
+                    <x-form.select wire:model.live="tahun">
                         @foreach($availableYears as $y)
                             <option value="{{ $y }}">{{ $y }}</option>
                         @endforeach
-                    </select>
+                    </x-form.select>
                 </div>
             </div>
         </div>
@@ -50,11 +50,11 @@
                             <td>
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="progress progress-modern flex-grow-1">
-                                        <div class="progress-bar progress-bar-modern {{ $kegiatan->persentase >= 100 ? 'bg-danger' : ($kegiatan->persentase >= 75 ? 'bg-warning' : 'bg-success') }}" 
-                                             role="progressbar" 
-                                             style="width: {{ min($kegiatan->persentase, 100) }}%" 
-                                             aria-valuenow="{{ $kegiatan->persentase }}" 
-                                             aria-valuemin="0" 
+                                        <div class="progress-bar progress-bar-modern {{ $kegiatan->persentase >= 100 ? 'bg-danger' : ($kegiatan->persentase >= 75 ? 'bg-warning' : 'bg-success') }}"
+                                             role="progressbar"
+                                             style="width: {{ min($kegiatan->persentase, 100) }}%"
+                                             aria-valuenow="{{ $kegiatan->persentase }}"
+                                             aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
                                     <span class="small fw-semibold" style="min-width: 45px;">{{ $kegiatan->persentase }}%</span>

@@ -1,5 +1,5 @@
 @props([
-    'title' => 'AdminPro - Modern Admin Dashboard',
+    'title' => 'SIWANDA',
     'description' => 'A beautiful, modern admin dashboard template built with Laravel, Livewire, and Tailwind CSS',
     'type' => 'guest',
 ])

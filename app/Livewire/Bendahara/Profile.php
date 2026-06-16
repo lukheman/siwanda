@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-#[Title('Profile Bendahara - AdminPro')]
+#[Title('Profile Bendahara')]
 class Profile extends Component
 {
     use WithFileUploads;

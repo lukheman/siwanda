@@ -8,7 +8,7 @@ use App\Models\Kegiatan;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Dashboard Bendahara - AdminPro')]
+#[Title('Dashboard Bendahara')]
 class Dashboard extends Component
 {
     public function render()

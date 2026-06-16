@@ -1,11 +1,6 @@
 <div>
     {{-- Page Header --}}
     <x-layout.page-header title="Profile Kepala Desa" subtitle="Kelola informasi akun Anda">
-        <x-slot:actions>
-            <x-ui.badge variant="success" icon="fas fa-user-check">
-                Terverifikasi
-            </x-ui.badge>
-        </x-slot:actions>
     </x-layout.page-header>
 
     {{-- Flash Messages --}}
@@ -28,7 +23,7 @@
                 {{-- Avatar Section --}}
                 <div class="position-relative d-inline-block mb-3">
                     @if($currentAvatar)
-                        <img src="{{ Storage::disk('public')->url($currentAvatar) }}" alt="Avatar" class="rounded-circle border border-4 border-primary"
+                        <img src="{{ asset('storage/' . $currentAvatar) }}" alt="Avatar" class="rounded-circle border border-4 border-primary"
                             style="width: 120px; height: 120px; object-fit: cover;">
                     @else
                         <div class="user-avatar mx-auto" style="width: 120px; height: 120px; font-size: 3rem;">
@@ -41,18 +36,6 @@
                 <p class="text-muted mb-3">{{ Auth::guard('kepala_desa')->user()->email }}</p>
                 <x-ui.badge variant="primary" icon="fas fa-user-tie">Kepala Desa</x-ui.badge>
 
-                <hr class="my-4">
-
-                <div class="text-start">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted">Bergabung</span>
-                        <span class="text-body">{{ Auth::guard('kepala_desa')->user()->created_at?->format('d M Y') ?? '-' }}</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-muted">Terakhir diperbarui</span>
-                        <span class="text-body">{{ Auth::guard('kepala_desa')->user()->updated_at?->diffForHumans() ?? '-' }}</span>
-                    </div>
-                </div>
             </x-layout.modern-card>
         </div>
 
@@ -72,7 +55,7 @@
                             <img src="{{ $avatar->temporaryUrl() }}" alt="Preview" class="rounded-circle border border-3 border-primary"
                                 style="width: 80px; height: 80px; object-fit: cover;">
                         @elseif($currentAvatar)
-                            <img src="{{ Storage::disk('public')->url($currentAvatar) }}" alt="Avatar" class="rounded-circle border border-3 border-secondary"
+                            <img src="{{ asset('storage/' . $currentAvatar) }}" alt="Avatar" class="rounded-circle border border-3 border-secondary"
                                 style="width: 80px; height: 80px; object-fit: cover;">
                         @else
                             <div class="user-avatar" style="width: 80px; height: 80px; font-size: 2rem;">
@@ -168,7 +151,7 @@
                         <i class="fas fa-lock text-warning"></i>
                         Ubah Password
                     </div>
-                    <x-ui.button type="button" variant="{{ $showPasswordSection ? 'danger' : 'outline' }}" size="sm"
+                    <x-ui.button type="button" variant="{{ $showPasswordSection ? 'danger' : 'warning' }}" size="sm"
                         wire:click="togglePasswordSection">
                         {{ $showPasswordSection ? 'Batal' : 'Ubah Password' }}
                     </x-ui.button>
@@ -214,7 +197,6 @@
                         </div>
 
                         <x-ui.alert variant="info" class="mt-3">
-                            <i class="fas fa-info-circle me-2"></i>
                             Password harus minimal 8 karakter dan mengandung huruf dan angka.
                         </x-ui.alert>
 

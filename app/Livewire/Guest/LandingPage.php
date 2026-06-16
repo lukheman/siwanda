@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.guest')]
-#[Title('AdminPro - Modern Admin Dashboard Template')]
+#[Title('SIWANDA')]
 class LandingPage extends Component
 {
     public function render()
