@@ -7,11 +7,7 @@
         </x-slot:actions>
     </x-layout.page-header>
 
-    @if (session('success'))
-        <x-ui.alert variant="success" title="Berhasil!" class="mb-4">
-            {{ session('success') }}
-        </x-ui.alert>
-    @endif
+    <x-ui.toast />
 
     {{-- Summary Cards --}}
     <div class="row g-4 mb-4">
@@ -170,11 +166,11 @@
                     />
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <x-ui.button type="button" variant="outline" wire:click="closeModal">
+                        <x-ui.button type="button" variant="secondary" wire:click="closeModal">
                             Batal
                         </x-ui.button>
                         <x-ui.button type="submit" variant="primary">
-                            {{ $editingPemasukanId ? 'Update Data' : 'Simpan Pemasukan' }}
+                            {{ $editingPemasukanId ? 'Perbarui' : 'Simpan Pemasukan' }}
                         </x-ui.button>
                     </div>
                 </form>

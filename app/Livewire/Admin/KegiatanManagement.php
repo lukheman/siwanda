@@ -60,7 +60,8 @@ class KegiatanManagement extends Component
     public function openDetailModal(int $id): void
     {
         $this->detailKegiatanId = $id;
-        $this->detailKegiatan = Kegiatan::withSum('pengeluarans', 'jumlah')
+        $this->detailKegiatan = Kegiatan::with('pengeluarans.kategori')
+            ->withSum('pengeluarans', 'jumlah')
             ->findOrFail($id);
         $this->showDetailModal = true;
     }
@@ -104,8 +105,17 @@ class KegiatanManagement extends Component
         
         $sisaAnggaranTersedia = $totalPemasukan - $totalPengeluaranNonKegiatan - $totalAnggaranKegiatanLain;
 
-        if ($this->anggaran > $sisaAnggaranTersedia) {
-            $this->addError('anggaran', 'Sisa anggaran desa yang belum dialokasikan hanya ' . $this->formatRupiah($sisaAnggaranTersedia) . '.');
+        $allowedToSave = false;
+
+        if ($this->editingKegiatanId) {
+            $oldAnggaran = \App\Models\Kegiatan::where('id', $this->editingKegiatanId)->value('anggaran');
+            if ($this->anggaran <= $oldAnggaran) {
+                $allowedToSave = true;
+            }
+        }
+
+        if (!$allowedToSave && $this->anggaran > $sisaAnggaranTersedia) {
+            $this->addError('anggaran', 'Sisa anggaran desa yang belum dialokasikan hanya ' . $this->formatRupiah($sisaAnggaranTersedia) . '. Anda tidak dapat mengeset anggaran melebihi batas ini.');
             return;
         }
 

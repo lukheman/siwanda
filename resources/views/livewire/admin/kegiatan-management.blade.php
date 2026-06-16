@@ -7,11 +7,7 @@
         </x-slot:actions>
     </x-layout.page-header>
 
-    @if (session('success'))
-        <x-ui.alert variant="success" title="Berhasil!" class="mb-4">
-            {{ session('success') }}
-        </x-ui.alert>
-    @endif
+    <x-ui.toast />
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h5 class="mb-0 fw-semibold text-body">Daftar Kegiatan</h5>
@@ -191,7 +187,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <x-ui.button type="button" variant="outline" wire:click="closeModal">
+                        <x-ui.button type="button" variant="secondary" wire:click="closeModal">
                             Batal
                         </x-ui.button>
                         <x-ui.button type="submit" variant="primary">
@@ -281,6 +277,38 @@
                                 <small class="text-danger d-block mt-2"><i class="fas fa-exclamation-triangle me-1"></i> Pengeluaran melebihi anggaran!</small>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="p-3 border rounded shadow-sm mt-4">
+                        <h6 class="fw-bold border-bottom pb-2 mb-3">Rincian Pemakaian Dana</h6>
+                        @if($detailKegiatan->pengeluarans && $detailKegiatan->pengeluarans->count() > 0)
+                            <x-layout.table class="table-sm border-bottom mb-0">
+                                <x-slot:head>
+                                    <tr class="table-light">
+                                        <th>Tanggal</th>
+                                        <th>Keterangan</th>
+                                        <th class="text-end">Jumlah</th>
+                                    </tr>
+                                </x-slot:head>
+                                @foreach($detailKegiatan->pengeluarans as $pengeluaran)
+                                    <tr>
+                                        <td class="text-nowrap">{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->format('d M Y') }}</td>
+                                        <td>
+                                            <div class="fw-semibold">{{ $pengeluaran->kategori->nama_kategori ?? 'Lainnya' }}</div>
+                                            <small class="text-muted">{{ $pengeluaran->keterangan ?? '-' }}</small>
+                                        </td>
+                                        <td class="text-end fw-bold text-danger">-{{ $this->formatRupiah($pengeluaran->jumlah) }}</td>
+                                    </tr>
+                                @endforeach
+                            </x-layout.table>
+                        @else
+                            <x-ui.empty-state 
+                                icon="fas fa-receipt" 
+                                title="Belum Ada Transaksi" 
+                                description="Belum ada rincian pemakaian dana untuk kegiatan ini." 
+                                size="sm" 
+                            />
+                        @endif
                     </div>
 
                     <div class="d-flex justify-content-end mt-4">

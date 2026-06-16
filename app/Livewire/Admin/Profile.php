@@ -122,7 +122,7 @@ class Profile extends Component
         $user->email = $validated['email'];
         $user->save();
 
-        session()->flash('success', 'Profile berhasil diperbarui.');
+        session()->flash('success', 'Profil berhasil diperbarui.');
     }
 
     public function updatePassword(): void

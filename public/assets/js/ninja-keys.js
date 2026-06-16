@@ -1,0 +1,1 @@
+Redirecting to /ninja-keys@1.2.2/dist/ninja-keys.js?module

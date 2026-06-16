@@ -82,9 +82,9 @@ class UserManagement extends Component
     protected function getTableName()
     {
         return match($this->roleType) {
-            'bendahara' => 'bendaharas',
-            'kepala_desa' => 'kepala_desas',
-            default => 'admins',
+            'bendahara' => 'bendahara',
+            'kepala_desa' => 'kepala_desa',
+            default => 'admin',
         };
     }
 

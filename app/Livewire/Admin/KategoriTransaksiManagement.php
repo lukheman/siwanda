@@ -61,10 +61,10 @@ class KategoriTransaksiManagement extends Component
         if ($this->editingKategoriId) {
             $kategori = KategoriTransaksi::findOrFail($this->editingKategoriId);
             $kategori->update($validated);
-            session()->flash('success', 'Kategori Transaksi updated successfully.');
+            session()->flash('success', 'Data kategori transaksi berhasil diperbarui.');
         } else {
             KategoriTransaksi::create($validated);
-            session()->flash('success', 'Kategori Transaksi created successfully.');
+            session()->flash('success', 'Data kategori transaksi berhasil ditambahkan.');
         }
 
         $this->closeModal();
@@ -87,7 +87,7 @@ class KategoriTransaksiManagement extends Component
     {
         if ($this->deletingKategoriId) {
             KategoriTransaksi::destroy($this->deletingKategoriId);
-            session()->flash('success', 'Kategori Transaksi deleted successfully.');
+            session()->flash('success', 'Data kategori transaksi berhasil dihapus.');
         }
 
         $this->showDeleteModal = false;

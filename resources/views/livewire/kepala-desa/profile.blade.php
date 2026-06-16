@@ -4,17 +4,7 @@
     </x-layout.page-header>
 
     {{-- Flash Messages --}}
-    @if (session('success'))
-        <x-ui.alert variant="success" title="Berhasil!" class="mb-4">
-            {{ session('success') }}
-        </x-ui.alert>
-    @endif
-
-    @if (session('error'))
-        <x-ui.alert variant="danger" title="Error!" class="mb-4">
-            {{ session('error') }}
-        </x-ui.alert>
-    @endif
+    <x-ui.toast />
 
     <div class="row g-4">
         {{-- Profile Info Card --}}

@@ -7,11 +7,7 @@
         </x-slot:actions>
     </x-layout.page-header>
 
-    @if (session('success'))
-        <x-ui.alert variant="success" title="Berhasil!" class="mb-4">
-            {{ session('success') }}
-        </x-ui.alert>
-    @endif
+    <x-ui.toast />
 
     {{-- Summary Cards --}}
     <div class="row g-4 mb-4">
@@ -147,22 +143,21 @@
                 </div>
 
                 <form wire:submit="save">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
+
+                        <div class="mb-3">
                             <label class="form-label">Tanggal Transaksi <span class="text-danger">*</span></label>
                             <input type="date" class="form-control" wire:model="tanggal" required>
                             @error('tanggal') <span class="text-danger small">{{ $message }}</span> @enderror
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class=" mb-3">
                             <label class="form-label">Jumlah (Rp) <span class="text-danger">*</span></label>
                             <div class="input-group">
-                                <span class="input-group-text bg-danger text-white border-danger fw-bold">Rp</span>
+                                <span class="input-group-text fw-bold">Rp</span>
                                 <input type="number" class="form-control fs-5" wire:model="jumlah" min="0" placeholder="0" required>
                             </div>
                             @error('jumlah') <span class="text-danger small">{{ $message }}</span> @enderror
                         </div>
-                    </div>
 
                     <div class="mb-3">
                         <label class="form-label">Kategori Transaksi <span class="text-danger">*</span></label>
@@ -213,11 +208,11 @@
                     />
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <x-ui.button type="button" variant="outline" wire:click="closeModal">
+                        <x-ui.button type="button" variant="secondary" wire:click="closeModal">
                             Batal
                         </x-ui.button>
                         <x-ui.button type="submit" variant="danger">
-                            {{ $editingPengeluaranId ? 'Update Data' : 'Simpan Pengeluaran' }}
+                            {{ $editingPengeluaranId ? 'Perbarui' : 'Simpan Pengeluaran' }}
                         </x-ui.button>
                     </div>
                 </form>

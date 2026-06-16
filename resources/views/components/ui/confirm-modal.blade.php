@@ -52,7 +52,7 @@
         <div class="d-flex justify-content-end gap-2 mt-4">
             <x-ui.button
                 type="button"
-                variant="outline"
+                variant="secondary"
                 wire:click="{{ $onCancel }}"
             >
                 {{ $cancelText }}

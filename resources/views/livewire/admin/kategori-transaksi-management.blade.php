@@ -7,11 +7,7 @@
         </x-slot:actions>
     </x-layout.page-header>
 
-    @if (session('success'))
-        <x-ui.alert variant="success" title="Success!" class="mb-4">
-            {{ session('success') }}
-        </x-ui.alert>
-    @endif
+    <x-ui.toast />
 
     <x-layout.modern-card>
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -102,11 +98,11 @@
                     />
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <x-ui.button type="button" variant="outline" wire:click="closeModal">
+                        <x-ui.button type="button" variant="secondary" wire:click="closeModal">
                             Batal
                         </x-ui.button>
                         <x-ui.button type="submit" variant="primary">
-                            {{ $editingKategoriId ? 'Update' : 'Simpan' }}
+                            {{ $editingKategoriId ? 'Perbarui' : 'Simpan' }}
                         </x-ui.button>
                     </div>
                 </form>

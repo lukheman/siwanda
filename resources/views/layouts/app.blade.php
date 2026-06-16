@@ -621,12 +621,13 @@
     </script>
     <ninja-keys placeholder="Type a command or search..."></ninja-keys>
     <script type="module" src="https://unpkg.com/ninja-keys?module"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const ninja = document.querySelector('ninja-keys');
-            
+
             const routes = [];
-            
+
             @if(Route::has($routePrefix . 'dashboard'))
             routes.push({
                 id: 'dashboard',
@@ -637,7 +638,7 @@
                 handler: () => { window.location.href = "{{ route($routePrefix . 'dashboard') }}"; }
             });
             @endif
-            
+
             @if(Route::has($routePrefix . 'pemasukan'))
             routes.push({
                 id: 'pemasukan',
@@ -729,7 +730,7 @@
                 handler: () => { window.location.href = "{{ route($routePrefix . 'profile') }}"; }
             });
             @endif
-            
+
 
 
             ninja.data = routes;
