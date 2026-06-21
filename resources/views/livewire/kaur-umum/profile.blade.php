@@ -1,6 +1,6 @@
 <div>
     {{-- Page Header --}}
-    <x-layout.page-header title="Profile Kepala Desa" subtitle="Kelola informasi akun Anda">
+    <x-layout.page-header title="Profile Kaur Umum" subtitle="Kelola informasi akun Anda">
     </x-layout.page-header>
 
     {{-- Flash Messages --}}
@@ -17,14 +17,14 @@
                             style="width: 120px; height: 120px; object-fit: cover;">
                     @else
                         <div class="user-avatar mx-auto" style="width: 120px; height: 120px; font-size: 3rem;">
-                            {{ Auth::guard('kepala_desa')->user()->initials() ?? 'K' }}
+                            {{ Auth::guard('kaur_umum')->user()->initials() ?? 'K' }}
                         </div>
                     @endif
                 </div>
 
-                <h4 class="text-body fw-semibold">{{ Auth::guard('kepala_desa')->user()->nama }}</h4>
-                <p class="text-muted mb-3">{{ Auth::guard('kepala_desa')->user()->email }}</p>
-                <x-ui.badge variant="primary" icon="fas fa-user-tie">Kepala Desa</x-ui.badge>
+                <h4 class="text-body fw-semibold">{{ Auth::guard('kaur_umum')->user()->nama }}</h4>
+                <p class="text-muted mb-3">{{ Auth::guard('kaur_umum')->user()->email }}</p>
+                <x-ui.badge variant="primary" icon="fas fa-user-tie">Kaur Umum</x-ui.badge>
 
             </x-layout.modern-card>
         </div>
@@ -49,7 +49,7 @@
                                 style="width: 80px; height: 80px; object-fit: cover;">
                         @else
                             <div class="user-avatar" style="width: 80px; height: 80px; font-size: 2rem;">
-                                {{ Auth::guard('kepala_desa')->user()->initials() ?? 'K' }}
+                                {{ Auth::guard('kaur_umum')->user()->initials() ?? 'K' }}
                             </div>
                         @endif
                     </div>

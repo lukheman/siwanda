@@ -9,7 +9,7 @@ use App\Models\Inventaris;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Dashboard Kepala Desa')]
+#[Title('Dashboard Kaur Umum')]
 class Dashboard extends Component
 {
     public function formatRupiah($angka)

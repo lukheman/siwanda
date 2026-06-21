@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-#[Title('Profile Kepala Desa')]
+#[Title('Profile Kaur Umum')]
 class Profile extends Component
 {
     use WithFileUploads;

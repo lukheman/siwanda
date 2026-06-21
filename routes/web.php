@@ -86,8 +86,7 @@ Route::prefix('bendahara')->middleware('auth:bendahara')->group(function () {
     Route::get('/laporan-realisasi', LaporanRealisasi::class)->name('bendahara.laporan-realisasi');
     Route::get('/kegiatan', KegiatanManagement::class)->name('bendahara.kegiatan');
 
-    // Aset & Inventaris
-    Route::get('/inventaris', InventarisManagement::class)->name('bendahara.inventaris');
+
 });
 
 // Kepala Desa-only Routes
