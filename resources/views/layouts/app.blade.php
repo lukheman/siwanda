@@ -537,7 +537,8 @@
         @php
             $guard = Auth::guard('admin')->check() ? 'admin' :
                      (Auth::guard('bendahara')->check() ? 'bendahara' :
-                     (Auth::guard('kepala_desa')->check() ? 'kepala_desa' : 'admin'));
+                     (Auth::guard('kepala_desa')->check() ? 'kepala_desa' : 
+                     (Auth::guard('kaur_umum')->check() ? 'kaur_umum' : 'admin')));
             $routePrefix = $guard . '.';
         @endphp
 
@@ -596,7 +597,8 @@
             $userName = Auth::user()?->nama ?? 'Guest';
             $userRole = Auth::guard('admin')->check() ? 'Administrator' :
                         (Auth::guard('bendahara')->check() ? 'Bendahara' :
-                        (Auth::guard('kepala_desa')->check() ? 'Kepala Desa' : 'Guest'));
+                        (Auth::guard('kepala_desa')->check() ? 'Kepala Desa' :
+                        (Auth::guard('kaur_umum')->check() ? 'Kaur Umum' : 'Guest')));
         @endphp
         <x-layout.topbar
             :user-name="$userName"

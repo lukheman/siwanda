@@ -35,12 +35,20 @@ Route::get('/', LandingPage::class)->name('home');
 Route::get('/berita-dana-desa', BeritaDanaDesa::class)->name('berita');
 
 // Auth Routes
-Route::middleware('guest:admin,bendahara,kepala_desa')->group(function () {
-    Route::get('/login', Login::class)->name('login');
+Route::middleware('guest:admin,bendahara,kepala_desa,kaur_umum')->group(function () {
+    Route::get('/login/admin', Login::class)->name('login.admin');
+    Route::get('/login/bendahara', Login::class)->name('login.bendahara');
+    Route::get('/login/kepala-desa', Login::class)->name('login.kepala_desa');
+    Route::get('/login/kaur-umum', Login::class)->name('login.kaur_umum');
+
+    // Portal for login selection (fallback)
+    Route::get('/login', function () {
+        return view('auth.portal');
+    })->name('login');
 });
 
 // Shared App Routes (Logout for all roles)
-Route::middleware('auth:admin,bendahara,kepala_desa')->group(function () {
+Route::middleware('auth:admin,bendahara,kepala_desa,kaur_umum')->group(function () {
     Route::post('/logout', [LogoutController::class, '__invoke'])->name('logout');
 });
 
@@ -90,4 +98,13 @@ Route::prefix('kepala-desa')->middleware('auth:kepala_desa')->group(function () 
     // Keuangan & Laporan
     Route::get('/sisa-anggaran', SisaAnggaran::class)->name('kepala_desa.sisa-anggaran');
     Route::get('/laporan-realisasi', LaporanRealisasi::class)->name('kepala_desa.laporan-realisasi');
+});
+
+// Kaur Umum-only Routes
+Route::prefix('kaur-umum')->middleware('auth:kaur_umum')->group(function () {
+    Route::get('/dashboard', \App\Livewire\KaurUmum\Dashboard::class)->name('kaur_umum.dashboard');
+    Route::get('/profile', \App\Livewire\KaurUmum\Profile::class)->name('kaur_umum.profile');
+    
+    // Aset & Inventaris
+    Route::get('/inventaris', InventarisManagement::class)->name('kaur_umum.inventaris');
 });

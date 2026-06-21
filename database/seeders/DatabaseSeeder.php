@@ -7,6 +7,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Bendahara;
 use App\Models\KepalaDesa;
+use App\Models\KaurUmum;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,6 +32,12 @@ class DatabaseSeeder extends Seeder
         KepalaDesa::create([
             'nama' => 'H. Rahmat Hidayat',
             'email' => 'kepaladesa@gmail.com',
+            'password' => Hash::make('password123'),
+        ]);
+
+        KaurUmum::create([
+            'nama' => 'Siti Aminah',
+            'email' => 'kaurumum@gmail.com',
             'password' => Hash::make('password123'),
         ]);
 

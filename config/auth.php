@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'kepala_desas',
         ],
+        'kaur_umum' => [
+            'driver' => 'session',
+            'provider' => 'kaur_umums',
+        ],
     ],
 
     /*
@@ -79,6 +83,10 @@ return [
         'kepala_desas' => [
             'driver' => 'eloquent',
             'model' => App\Models\KepalaDesa::class,
+        ],
+        'kaur_umums' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\KaurUmum::class,
         ],
     ],
 
@@ -116,6 +124,12 @@ return [
         ],
         'kepala_desas' => [
             'provider' => 'kepala_desas',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'kaur_umums' => [
+            'provider' => 'kaur_umums',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
