@@ -1,3 +1,4 @@
+@component('layouts.guest', ['title' => 'PANDUWA - Desa Waindawula', 'type' => 'guest'])
 <div>
     <!-- Hero Section -->
     <section class="hero position-relative vh-100 d-flex align-items-center" style="background: url('{{ asset('assets/images/kantor-desa.png') }}') center/cover no-repeat; margin-top: -73px; padding-top: 73px;">
@@ -65,7 +66,7 @@
         </div>
     </section>
 
-    <x-slot:styles>
+    @slot('styles')
         <style>
             .text-shadow-sm {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -78,5 +79,6 @@
                 box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
             }
         </style>
-    </x-slot:styles>
+    @endslot
 </div>
+@endcomponent

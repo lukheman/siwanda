@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 // Guest & Auth
-use App\Livewire\Guest\LandingPage;
-use App\Livewire\Guest\BeritaDanaDesa;
-use App\Livewire\Auth\Login;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\Auth\LoginController;
 
 // Admin Core
 use App\Http\Controllers\Admin\LogoutController;
@@ -31,15 +30,16 @@ use App\Livewire\Admin\LaporanRealisasi;
 */
 
 // Guest Routes
-Route::get('/', LandingPage::class)->name('home');
-Route::get('/berita-dana-desa', BeritaDanaDesa::class)->name('berita');
+Route::get('/', [GuestController::class, 'index'])->name('home');
+Route::get('/berita-dana-desa', [GuestController::class, 'berita'])->name('berita');
 
 // Auth Routes
 Route::middleware('guest:admin,bendahara,kepala_desa,kaur_umum')->group(function () {
-    Route::get('/login/admin', Login::class)->name('login.admin');
-    Route::get('/login/bendahara', Login::class)->name('login.bendahara');
-    Route::get('/login/kepala-desa', Login::class)->name('login.kepala_desa');
-    Route::get('/login/kaur-umum', Login::class)->name('login.kaur_umum');
+    Route::get('/login/admin', [LoginController::class, 'showLoginForm'])->name('login.admin');
+    Route::get('/login/bendahara', [LoginController::class, 'showLoginForm'])->name('login.bendahara');
+    Route::get('/login/kepala-desa', [LoginController::class, 'showLoginForm'])->name('login.kepala_desa');
+    Route::get('/login/kaur-umum', [LoginController::class, 'showLoginForm'])->name('login.kaur_umum');
+    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
     // Portal for login selection (fallback)
     Route::get('/login', function () {

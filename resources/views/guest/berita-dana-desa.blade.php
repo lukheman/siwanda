@@ -1,3 +1,7 @@
+@component('layouts.guest', ['title' => 'Berita Penggunaan Dana Desa - PANDUWA', 'type' => 'guest'])
+@php
+    $formatRupiah = fn($angka) => 'Rp ' . number_format($angka, 0, ',', '.');
+@endphp
 <div>
     <!-- Hero Section for Berita Page -->
     <section class="hero position-relative d-flex align-items-center justify-content-center" style="background: url('{{ asset('assets/images/kantor-desa.png') }}') center/cover no-repeat; margin-top: -73px; padding-top: 140px; padding-bottom: 100px; min-height: 450px;">
@@ -34,7 +38,7 @@
                             </div>
                             <div>
                                 <h6 class="text-muted fw-semibold text-uppercase mb-1" style="font-size: 0.8rem;">Total Anggaran / Pemasukan</h6>
-                                <h4 class="fw-bold mb-0 text-dark">{{ $this->formatRupiah($totalPemasukan) }}</h4>
+                                <h4 class="fw-bold mb-0 text-dark">{{ $formatRupiah($totalPemasukan) }}</h4>
                             </div>
                         </div>
                     </div>
@@ -47,7 +51,7 @@
                             </div>
                             <div>
                                 <h6 class="text-muted fw-semibold text-uppercase mb-1" style="font-size: 0.8rem;">Total Realisasi / Pengeluaran</h6>
-                                <h4 class="fw-bold mb-0 text-dark">{{ $this->formatRupiah($totalPengeluaran) }}</h4>
+                                <h4 class="fw-bold mb-0 text-dark">{{ $formatRupiah($totalPengeluaran) }}</h4>
                             </div>
                         </div>
                     </div>
@@ -60,7 +64,7 @@
                             </div>
                             <div>
                                 <h6 class="text-muted fw-semibold text-uppercase mb-1" style="font-size: 0.8rem;">Sisa Kas Desa</h6>
-                                <h4 class="fw-bold mb-0 text-dark">{{ $this->formatRupiah($sisaAnggaran) }}</h4>
+                                <h4 class="fw-bold mb-0 text-dark">{{ $formatRupiah($sisaAnggaran) }}</h4>
                             </div>
                         </div>
                     </div>
@@ -94,11 +98,11 @@
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between small mb-1">
                                         <span class="text-muted">Anggaran:</span>
-                                        <span class="fw-semibold text-body">{{ $this->formatRupiah($kegiatan->anggaran) }}</span>
+                                        <span class="fw-semibold text-body">{{ $formatRupiah($kegiatan->anggaran) }}</span>
                                     </div>
                                     <div class="d-flex justify-content-between small mb-2">
                                         <span class="text-muted">Realisasi Dana:</span>
-                                        <span class="fw-semibold text-danger">{{ $this->formatRupiah($kegiatan->pengeluarans_sum_jumlah ?? 0) }}</span>
+                                        <span class="fw-semibold text-danger">{{ $formatRupiah($kegiatan->pengeluarans_sum_jumlah ?? 0) }}</span>
                                     </div>
 
                                     @php
@@ -163,7 +167,7 @@
                                         @endif
                                     </td>
                                     <td class="text-end px-4 text-danger fw-bold">
-                                        {{ $this->formatRupiah($pengeluaran->jumlah) }}
+                                        {{ $formatRupiah($pengeluaran->jumlah) }}
                                     </td>
                                 </tr>
                             @empty
@@ -178,7 +182,7 @@
         </div>
     </div>
 
-    <x-slot:styles>
+    @slot('styles')
         <style>
             .text-shadow-sm {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -191,5 +195,6 @@
                 box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
             }
         </style>
-    </x-slot:styles>
+    @endslot
 </div>
+@endcomponent
