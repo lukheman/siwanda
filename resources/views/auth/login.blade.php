@@ -10,13 +10,6 @@
             <p>Silakan masuk ke portal <strong>{{ ucwords(str_replace('_', ' ', $role)) }}</strong></p>
         </div>
 
-        <!-- Alert Message -->
-        @if ($errors->has('email'))
-            <div class="alert alert-danger d-flex align-items-center gap-2 py-2 px-3 rounded-3 mb-3" style="font-size: 0.875rem;">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>{{ $errors->first('email') }}</span>
-            </div>
-        @endif
 
         <!-- Login Form -->
         <form method="POST" action="{{ route('login.submit') }}">
